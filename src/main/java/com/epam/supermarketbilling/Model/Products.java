@@ -1,21 +1,23 @@
 package com.epam.supermarketbilling.Model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Products")
 public class Products {
-    private Long id;
-    private String name;
-    private int qty;
-    private float price;
-
-    protected Products() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "Item_name",nullable = false)
+    private String name;
+    @Column(name = "Quantity", nullable = false)
+    private int qty;
+    @Column(name = "Price(/unit)",nullable = false)
+    private float price;
+
+    public Products() {
+    }
+
+
     public Long getId() {
         return id;
     }
