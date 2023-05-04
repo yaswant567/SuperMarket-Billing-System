@@ -18,16 +18,26 @@ public class AdminController {
     @GetMapping("/Admin")
     public String getAllEItems(Model model) {
         model.addAttribute("items",new Products());
-        List<Products> AllItems = adminService.getAllItems();
         model.addAttribute("allItems",adminService.getAllItems());
         return "admin";
     }
 
 
-
     @PostMapping("/Admin")
     public String takeInput(@ModelAttribute("items") Products items,Model model) {
         adminService.addItem(items);
+        return "redirect:/Admin";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String saveEditedData(@ModelAttribute Products data) {
+        // save edited data to database
+        return "redirect:/Admin";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteData(@ModelAttribute Products data) {
+        // save edited data to database
         return "redirect:/Admin";
     }
 
