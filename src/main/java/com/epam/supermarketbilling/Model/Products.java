@@ -14,9 +14,6 @@ public class Products {
     @Column(name = "Price(/unit)",nullable = false)
     private float price;
 
-    public Products() {
-    }
-
 
     public Long getId() {
         return id;

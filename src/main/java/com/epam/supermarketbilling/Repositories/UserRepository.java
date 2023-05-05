@@ -1,8 +1,9 @@
 package com.epam.supermarketbilling.Repositories;
 
-import com.epam.supermarketbilling.Model.CustomerProducts;
-import com.epam.supermarketbilling.Model.Products;
+import com.epam.supermarketbilling.Model.Items;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends JpaRepository<CustomerProducts, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<Items, Long> {
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class AdminServicesIml implements AdminServices {
+public class AdminServicesImpl implements AdminServices {
 
     @Autowired
     private AdminRepository adminRepo;

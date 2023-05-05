@@ -1,25 +1,23 @@
 package com.epam.supermarketbilling.Controllers;
 
 import com.epam.supermarketbilling.Model.Products;
-import com.epam.supermarketbilling.Services.AdminServicesIml;
+import com.epam.supermarketbilling.Services.AdminServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 public class AdminController {
 
     @Autowired
-    AdminServicesIml adminService;
+    AdminServicesImpl adminService;
 
     @GetMapping("/Admin")
-    public String getAllEItems(Model model) {
+    public String getAllItems(Model model) {
         model.addAttribute("items",new Products());
         model.addAttribute("allItems",adminService.getAllItems());
-        return "admin";
+        return "Admin";
     }
 
 
