@@ -13,30 +13,30 @@ public class AdminController {
     @Autowired
     AdminServicesImpl adminService;
 
-    @GetMapping("/Admin")
+    @GetMapping("/Admin/addItems")
     public String getAllItems(Model model) {
         model.addAttribute("items",new Products());
         model.addAttribute("allItems",adminService.getAllItems());
-        return "Admin";
+        return "Admin_addItems";
     }
 
 
-    @PostMapping("/Admin")
+    @PostMapping("/Admin/addItems")
     public String takeInput(@ModelAttribute("items") Products items,Model model) {
         adminService.addItem(items);
-        return "redirect:/Admin";
+        return "redirect:/Admin/addItems";
     }
 
     @PostMapping("/edit/{id}")
     public String saveEditedData(@ModelAttribute Products data) {
         // save edited data to database
-        return "redirect:/Admin";
+        return "redirect:/Admin/addItems";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteData(@ModelAttribute Products data) {
         // save edited data to database
-        return "redirect:/Admin";
+        return "redirect:/Admin/addItems";
     }
 
     //    @GetMapping("/{id}")

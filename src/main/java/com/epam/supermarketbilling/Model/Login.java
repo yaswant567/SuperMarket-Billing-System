@@ -7,19 +7,22 @@ import jakarta.persistence.*;
 public class Login
 {
     @Id
-    @Column(name = "emp_id")
+    @Column(name = "emp_id", nullable = false)
+    @GeneratedValue(generator = "emp_seq", strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "emp_seq", sequenceName = "emp_sequence", initialValue = 1190, allocationSize = 1)
     private Long id;
-    @Column(name = "emp_name")
+    @Column(name = "emp_name", nullable = false)
     private String name;
+    @Column(name="password", nullable = false)
     private String password;
-    @Column(name = "roles")
+    @Column(name = "roles", nullable = false)
     private String role;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

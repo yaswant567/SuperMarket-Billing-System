@@ -2,8 +2,15 @@ package com.epam.supermarketbilling.Services;
 
 import com.epam.supermarketbilling.Model.Login;
 
+import java.util.List;
+
 public interface LoginServices {
 
-    public Login getDataById(Login data);
+    Login getDataById(Long id);
+
     public boolean isIdExists(Long id);
+
+    public void addData(Login data);
+    public List<Login> getAllData();
+
 }
