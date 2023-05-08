@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Items")
 public class Items {
-    private Long id;
     @Id
+    private Long id;
     @Column(name = "S_no")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int sno;
+    @GeneratedValue(generator = "item_seq", strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "item_seq", sequenceName = "item_sequence", initialValue = 1, allocationSize = 1)
+    private Long sno;
     @Column(name = "Item_name",nullable = false)
     private String name;
     @Column(name = "Qty", nullable = false)
@@ -27,10 +28,10 @@ public class Items {
         this.id = id;
     }
 
-    public int getSno() {
+    public Long getSno() {
         return sno;
     }
-    public void setSno(int sno)
+    public void setSno(Long sno)
     {
         this.sno = sno;
     }

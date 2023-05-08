@@ -4,7 +4,9 @@ import com.epam.supermarketbilling.Model.Items;
 import com.epam.supermarketbilling.Model.Products;
 import com.epam.supermarketbilling.Repositories.AdminRepository;
 import com.epam.supermarketbilling.Repositories.UserRepository;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,9 @@ public class UserServicesImpl implements UserServices{
 
     @Autowired
     public UserRepository userRepo;
+
+    @Autowired
+    public EntityManager entityManager;
 
 
     public boolean isUserExists(Long id) {
@@ -63,5 +68,10 @@ public class UserServicesImpl implements UserServices{
 
     public void deleteAll(){
         userRepo.deleteAll();
+        resetIdentityKey("Items");
+    }
+    public void resetIdentityKey(String tableName) {
+        Query query = entityManager.createNativeQuery("ALTER TABLE " + tableName + " AUTO_INCREMENT=1");
+        query.executeUpdate();
     }
 }

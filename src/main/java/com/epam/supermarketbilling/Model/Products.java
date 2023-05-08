@@ -11,6 +11,8 @@ public class Products {
     private String name;
     @Column(name = "Quantity", nullable = false)
     private int qty;
+    @Column(name = "Stock", nullable = false)
+    private String stock;
     @Column(name = "Price(/unit)",nullable = false)
     private float price;
 
@@ -41,6 +43,15 @@ public class Products {
         this.qty = qty;
     }
 
+    public String getStock()
+    {
+        return stock;
+    }
+
+    public String setStock()
+    {
+        return stock;
+    }
     public float getPrice() {
         return price;
     }

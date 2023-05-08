@@ -58,6 +58,20 @@ public class UserController
         userServices.deleteAll();
         return "redirect:/User/addItem";
     }
+
+    @GetMapping("/User/addItem/generateBill")
+    public String generateBill()
+    {
+        userServices.getAllItems();
+        return "GeneratedBill";
+    }
+
+//    public static class MyCondition {
+//        public boolean checkCondition(Long id) {
+//            // Define your condition logic here
+//            return true; // Example condition always returns true
+//        }
+//    }
 //    When you use "@RequestBody", Spring expects the request to contain a JSON or XML payload that can be converted into the Products object. Since you're not sending any payload in your request, Spring might be throwing an error and not processing the redirect.
 
 //    @GetMapping("/User/userItems")
