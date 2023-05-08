@@ -34,4 +34,9 @@ public class LoginServicesImpl implements LoginServices
     public List<Login> getAllData() {
         return loginRepo.findAll();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        loginRepo.deleteById(id);
+    }
 }

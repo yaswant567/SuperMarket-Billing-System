@@ -58,6 +58,10 @@ public class UserServicesImpl implements UserServices{
 
     public void deleteItem(Long id)
     {
+        userRepo.deleteById(id);
+    }
 
+    public void deleteAll(){
+        userRepo.deleteAll();
     }
 }

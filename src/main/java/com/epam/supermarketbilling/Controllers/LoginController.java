@@ -5,9 +5,7 @@ import com.epam.supermarketbilling.Services.LoginServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class LoginController {
@@ -29,16 +27,16 @@ public class LoginController {
         return "redirect:/Admin/addUser";
     }
 
-        @PostMapping("/addUser/edit/{id}")
+        @PostMapping("/Admin/addUser/edit/{id}")
         public String saveEditedData(@ModelAttribute Login data) {
         // save edited data to database
         return "redirect:/Admin/addUser";
     }
 
-        @PostMapping("/addUser/delete/{id}")
-        public String deleteData(@ModelAttribute Login data) {
-        // save edited data to database
-        return "redirect:/Admin/addUser";
+        @GetMapping("/Admin/addUser/delete/{id}")
+        public String deleteData(@PathVariable("id") Long id) {
+            loginServices.deleteById(id);
+            return "redirect:/Admin/addUser";
     }
 
     }
