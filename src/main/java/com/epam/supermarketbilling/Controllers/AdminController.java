@@ -33,12 +33,6 @@ public class AdminController {
         return "redirect:/Admin/addItems";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteData(@ModelAttribute Products data) {
-        // save edited data to database
-        return "redirect:/Admin/addItems";
-    }
-
     //    @GetMapping("/{id}")
 //    public Products getItemById(@PathVariable("id") Long id) {
 //        return adminService.getItemById(id);
@@ -49,8 +43,9 @@ public class AdminController {
 //        entityService.updateEntity(entity);
 //    }
 //
-//    @DeleteMapping("/{id}")
-//    public void deleteEntity(@PathVariable("id") Long id) {
-//        entityService.deleteEntity(id);
-//    }
+      @GetMapping("/Admin/addItems/delete/{id}")
+      public String deleteData(@PathVariable("id") Long id) {
+             adminService.deleteItem(id);
+             return "redirect:/Admin/addItems";
+      }
 }

@@ -73,16 +73,17 @@
                 <tr>
                     <th>ID</th>
                     <th>ItemName</th>
-                    <th>Quantity</th>
                     <th>Price(\Unit)</th>
+                    <th>Stock</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="entity : ${allItems}"  th:onclick="|handleClick(${entity.id}, 'addToBill')|">
                     <td th:text="${entity.id}"></td>
                     <td th:text="${entity.name}"></td>
-                    <td th:text="${entity.qty}"></td>
                     <td th:text="${entity.price}"></td>
+<!--                    <td th:text="${entity.stock}"></td>-->
+                    <td>Available</td>
                 </tr>
                 </tbody>
             </table>
@@ -96,7 +97,6 @@
                     <th>ItemName</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Stock</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -114,7 +114,10 @@
                 </tr>
                 </tbody>
                 <tfoot>
-                    <tr><td colspan="3">Total Amount: </td></tr>
+                    <tr>
+                        <td colspan="3">Total Amount: </td>
+                        <td th:text="${Sum}"></td>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -135,7 +138,7 @@
         success: function (response) {
             if (action == "addToBill") {
             {
-                alert(response);
+<!--                alert(response);-->
                 $.ajax({
                     url: "/User/addItem/addToUserTable",
                     type: "Post",

@@ -7,10 +7,14 @@ import com.epam.supermarketbilling.Repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.Query;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.support.NullValue;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.lang.model.type.NullType;
 import java.util.List;
 
 @Service
@@ -19,6 +23,8 @@ public class UserServicesImpl implements UserServices{
 
     @Autowired
     public UserRepository userRepo;
+    @Autowired
+    public AdminServicesImpl adminServices;
 
     @Autowired
     public EntityManager entityManager;
@@ -39,13 +45,18 @@ public class UserServicesImpl implements UserServices{
     @Override
     public void addItem(Products items)
     {
+        if(items.getQty() != 0)
+        {
+            items = adminServices.getItemById(items.getId());
+            items.setQty(items.getQty() - 1);
+        }
 
         if(isUserExists(items.getId()))
         {
-            Items cProducts = getItemById(items.getId());
-            cProducts.setQty(cProducts.getQty() + 1);
-            cProducts.setTotalPrice(cProducts.getTotalPrice() + cProducts.getPrice());
-            userRepo.save(cProducts);
+            Items cItems = getItemById(items.getId());
+            cItems.setQty(cItems.getQty() + 1);
+            cItems.setTotalPrice(cItems.getTotalPrice() + cItems.getPrice());
+            userRepo.save(cItems);
         }
         else
         {
@@ -63,6 +74,9 @@ public class UserServicesImpl implements UserServices{
 
     public void deleteItem(Long id)
     {
+        Products cProduct = adminServices.getItemById(id);
+        Items cItem = getItemById(id);
+        cProduct.setQty(cProduct.getQty() + cItem.getQty());
         userRepo.deleteById(id);
     }
 
@@ -74,4 +88,13 @@ public class UserServicesImpl implements UserServices{
         Query query = entityManager.createNativeQuery("ALTER TABLE " + tableName + " AUTO_INCREMENT=1");
         query.executeUpdate();
     }
+
+    public Long getSumOfColumn(){
+        return userRepo.getSumOfColumn();
+    }
+//    @Around("execution(* com.epam.supermarketbilling.Repositories.UserRepository.getSumOfColumn())")
+//    public Long aroundGetSumOfColumn(ProceedingJoinPoint joinPoint) throws Throwable {
+//        Long result = (Long) joinPoint.proceed();
+//        return result != null ? result : 0L;
+//    }
 }

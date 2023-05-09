@@ -48,10 +48,10 @@ public class Products {
         return stock;
     }
 
-    public String setStock()
-    {
-        return stock;
+    public void setStock(String stock) {
+        this.stock = stock;
     }
+
     public float getPrice() {
         return price;
     }

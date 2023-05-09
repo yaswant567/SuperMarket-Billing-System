@@ -1,13 +1,13 @@
 package com.epam.supermarketbilling.Controllers;
 
+import com.epam.supermarketbilling.Model.Customer;
 import com.epam.supermarketbilling.Model.Items;
 import com.epam.supermarketbilling.Model.Login;
 import com.epam.supermarketbilling.Model.Products;
 import com.epam.supermarketbilling.Services.AdminServicesImpl;
+import com.epam.supermarketbilling.Services.CustomerServicesImpl;
 import com.epam.supermarketbilling.Services.UserServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +17,19 @@ public class UserController
 {
     @Autowired
     public AdminServicesImpl adminService;
+
     @Autowired
     public UserServicesImpl userServices;
+
+    @Autowired
+    public CustomerServicesImpl customerServices;
+
     @GetMapping("/User/addItem")
-    public String getAllEItems(Model model) {
+    public String getAllItems(Model model) {
         model.addAttribute("view",new Items());
         model.addAttribute("allItems",adminService.getAllItems());
         model.addAttribute("view",userServices.getAllItems());
+        model.addAttribute("Sum", userServices.getSumOfColumn());
         return "User";
     }
 
@@ -63,6 +69,15 @@ public class UserController
     public String generateBill()
     {
         userServices.getAllItems();
+        return "GeneratedBill";
+    }
+
+
+    // ------------------------------------------------Customer  Table---------------------------------------------- //
+
+    @GetMapping("")
+    public String addCustomer(Customer data)
+    {
         return "GeneratedBill";
     }
 
