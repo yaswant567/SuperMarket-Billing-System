@@ -44,4 +44,8 @@ public class LoginServicesImpl implements LoginServices
     public Login getUserById(Long id) {
         return loginRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Item not found with id " + id));
     }
+
+    public void deleteAllEmp(){
+        loginRepo.deleteAll();
+    }
 }

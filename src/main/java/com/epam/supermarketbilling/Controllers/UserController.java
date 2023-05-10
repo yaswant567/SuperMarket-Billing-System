@@ -24,6 +24,8 @@ public class UserController
     @Autowired
     public CustomerServicesImpl customerServices;
 
+    //--------------------------------------Add Products to Cart (User.html)------------------------------------------//
+
     @GetMapping("/User/addItem")
     public String getAllItems(Model model) {
         model.addAttribute("view",new Items());
@@ -79,9 +81,9 @@ public class UserController
     }
 
     @PostMapping("/User/addItem/generateBill")
-    public String takeInput(@ModelAttribute("items") Customer items,Model model) {
+    public String takeInput(@ModelAttribute("items")Customer items,Model model) {
         customerServices.addCustomer(items);
-        return "redirect:/Admin/addItems";
+        return "redirect:/User/addItem/generateBill";
     }
 
     // ------------------------------------------------Customer  Table---------------------------------------------- //

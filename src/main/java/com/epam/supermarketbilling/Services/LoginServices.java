@@ -14,5 +14,6 @@ public interface LoginServices {
     public List<Login> getAllData();
     public void deleteById(Long id);
     public Login getUserById(Long id);
+    public void deleteAllEmp();
 
 }

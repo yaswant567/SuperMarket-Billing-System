@@ -2,6 +2,7 @@ package com.epam.supermarketbilling.Controllers;
 
 import com.epam.supermarketbilling.Model.Products;
 import com.epam.supermarketbilling.Services.AdminServicesImpl;
+import com.epam.supermarketbilling.Services.CustomerServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,8 @@ public class AdminController {
 
     @Autowired
     AdminServicesImpl adminService;
+    @Autowired
+    CustomerServicesImpl customerServices;
 
     @GetMapping("/Admin/addItems")
     public String getAllItems(Model model) {
@@ -48,4 +51,33 @@ public class AdminController {
              adminService.deleteItem(id);
              return "redirect:/Admin/addItems";
       }
+
+      @GetMapping("/Admin/addItems/deleteAllItems")
+      public String deleteAll()
+      {
+          adminService.deleteAllItem();
+          return "redirect:/Admin/addItems";
+      }
+
+      //-------------------------------------------Manage Customer Record---------------------------------------------//
+      @GetMapping("/Admin/addCust")
+      public String getCustomer(Model model)
+      {
+          model.addAttribute("cust",customerServices.getAllCustomers());
+          return "Admin_addCustomer";
+      }
+
+      @GetMapping("/Admin/addCust/delete/{id}")
+      public String deleteCustomer(@PathVariable("id") Long id) {
+          customerServices.delCustomer(id);
+          return "redirect:/Admin/addCust";
+      }
+
+      @GetMapping("/Admin/addItems/deleteAll")
+      public String deleteAllCustomer()
+      {
+          customerServices.delAllCustomer();
+          return "redirect:/Admin/addCust";
+      }
+
 }

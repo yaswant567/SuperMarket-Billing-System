@@ -72,18 +72,24 @@
     <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" aria-current="page" href="http://localhost:9090/User/addItem">Home</a>
+                <a class="nav-link" aria-current="page" href="http://localhost:9090/Admin/addItems">ManageItems</a>
                 <!--                   <a href="http://localhost:9090/Admin/addItems">Manage Products</a>-->
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:9090/User/addItem">userDetails</a>
+                <a class="nav-link" href="http://localhost:9090/Admin/addUser">EmpDetails</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="http://localhost:9090/Admin/addCust">CustDetails</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+        </ul>
+    </div>
+    <div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="http://localhost:9090/Login">Logout</a>
+                <!--                   <a href="http://localhost:9090/Admin/addItems">Manage Products</a>-->
             </li>
+
         </ul>
     </div>
 </nav>
@@ -161,8 +167,9 @@
       </tr>
       </tbody>
     </table>
-
+        <a th:href="@{/Admin/addUser/deleteAll}" class="btn btn-danger">Delete All</a>
     </div>
+
 </div>
 <script src="/webjars/bootstrap/5.1.0/js/bootstrap.min.js"></script>
 

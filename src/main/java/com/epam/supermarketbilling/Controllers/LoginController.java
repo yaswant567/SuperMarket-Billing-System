@@ -82,5 +82,11 @@ public class LoginController {
             loginServices.deleteById(id);
             return "redirect:/Admin/addUser";
     }
+    @GetMapping("/Admin/addUser/deleteAll")
+    public String delAllEmp()
+    {
+        loginServices.deleteAllEmp();
+        return "redirect:/Admin/addUser";
+    }
 
     }

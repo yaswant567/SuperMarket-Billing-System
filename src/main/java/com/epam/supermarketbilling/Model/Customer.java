@@ -1,8 +1,10 @@
 package com.epam.supermarketbilling.Model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.xml.crypto.Data;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,8 +21,9 @@ public class Customer {
     private String email;
     @Column(name = "Mobile", length = 10, nullable = false)
     private String mobile;
-    @Column(name = "Date_Time", length = 10, nullable = false)
-    private Date dateTime;
+
+    @Column(name="date_Time")
+    private LocalDate date= LocalDate.now();
     @Column(name = "Amount", nullable = false)
     private int amount;
 
@@ -56,13 +59,15 @@ public class Customer {
         this.mobile = mobile;
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
+    }
+    public void setDate(LocalDate date)
+    {
+        this.date = date;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
-    }
+
 
     public int getAmount() {
         return amount;

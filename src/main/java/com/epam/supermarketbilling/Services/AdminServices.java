@@ -15,4 +15,5 @@ public interface AdminServices {
 //    public void updateItem(Products entity);
 
     public void deleteItem(Long id);
+    public void deleteAllItem();
 }
