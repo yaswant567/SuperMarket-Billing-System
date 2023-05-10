@@ -2,6 +2,7 @@ package com.epam.supermarketbilling.Controllers;
 
 import com.epam.supermarketbilling.Model.Login;
 import com.epam.supermarketbilling.Services.LoginServicesImpl;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,49 @@ public class LoginController {
 
         @Autowired
         public LoginServicesImpl loginServices;
+
+//-------------------------------------------Login Page Handling----------------------------------------------------------------------//
+
+        @GetMapping("/Login")
+        public String loginPage()
+        {
+            return "Login";
+        }
+
+    @PostMapping("/Login")
+    public String login(@RequestParam Long id, @RequestParam String password, @RequestParam String role, HttpSession session) {
+         Login user = loginServices.getUserById(id);
+         boolean flag = false;
+        if (user != null && id.equals(user.getId()) && password.equals(user.getPassword()) && role.equals("Admin")) {
+//            session.setAttribute("id", id);
+            flag = true;
+            return "redirect:/Admin";
+        }
+        else if(user != null && id.equals(user.getId()) && password.equals(user.getPassword()) && role.equals("Employee")) {
+            flag = false;
+            return "redirect:/User";
+        }
+        return (flag) ? "redirect:/Admin/addItems" : "redirect:/User/addItem";
+    }
+
+        @GetMapping("/User")
+        public String user()
+        {
+            return "redirect:/User/addItem";
+        }
+
+        @GetMapping("/Admin")
+        public String admin()
+        {
+            return "redirect:/Admin/addItems";
+        }
+
+
+
+
+
+ //----------------------------------------------User Data Handling in Admin--------------------------------------------------------//
+
 
         @GetMapping("/Admin/addUser")
         public String getAllItems(Model model) {

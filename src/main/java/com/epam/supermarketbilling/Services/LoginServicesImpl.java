@@ -39,4 +39,9 @@ public class LoginServicesImpl implements LoginServices
     public void deleteById(Long id) {
         loginRepo.deleteById(id);
     }
+
+    @Override
+    public Login getUserById(Long id) {
+        return loginRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Item not found with id " + id));
+    }
 }

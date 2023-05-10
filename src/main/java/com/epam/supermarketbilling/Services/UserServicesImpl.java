@@ -1,8 +1,10 @@
 package com.epam.supermarketbilling.Services;
 
+import com.epam.supermarketbilling.Model.Customer;
 import com.epam.supermarketbilling.Model.Items;
 import com.epam.supermarketbilling.Model.Products;
 import com.epam.supermarketbilling.Repositories.AdminRepository;
+import com.epam.supermarketbilling.Repositories.CustomerRepository;
 import com.epam.supermarketbilling.Repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,6 +27,9 @@ public class UserServicesImpl implements UserServices{
     public UserRepository userRepo;
     @Autowired
     public AdminServicesImpl adminServices;
+
+    @Autowired
+    public CustomerRepository customerRepo;
 
     @Autowired
     public EntityManager entityManager;
@@ -92,9 +97,12 @@ public class UserServicesImpl implements UserServices{
     public Long getSumOfColumn(){
         return userRepo.getSumOfColumn();
     }
-//    @Around("execution(* com.epam.supermarketbilling.Repositories.UserRepository.getSumOfColumn())")
-//    public Long aroundGetSumOfColumn(ProceedingJoinPoint joinPoint) throws Throwable {
-//        Long result = (Long) joinPoint.proceed();
-//        return result != null ? result : 0L;
-//    }
+
+    //------------------------------------------Customr--------------------------------------------------------//
+
+    @Override
+    public void addCustomer(Customer cust)
+    {
+        customerRepo.save(cust);
+    }
 }

@@ -23,9 +23,16 @@
         }
         .container{
           margin-top: 10px;
+          box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+          border-radius: 10px;
           background-color: white;
-          height: 100%:
+          height: none;
+          width: 50%;
+          display: flex;
           text-align: center;
+        }
+        .row{
+           margin: 10px;
         }
     </style>
 </head>
@@ -52,22 +59,33 @@
 <div class="container">
     <div class="row">
 
-        <form method="post" action="/Admin/addItems" th:object="${items}">
+        <form method="post" class="form-label" action="/Admin/addItems" th:object="${items}">
+            <div class="form-group">
             <label for="name">Customer_Name:</label>
-            <input type="text" id="name" th:field="*{name}"/>
-
+            <input type="text" class="form-control" id="name" th:field="*{name}"/>
+            </div>
+            <div class="form-group">
             <label for="email">Email-Id:</label>
-            <input type="email" id="email" th:field="*{qty}"/>
-
+            <input type="email" class="form-control" id="email" th:field="*{email}"/>
+            </div>
+            <div class="form-group">
             <label for="tel">Mobile_No.:</label>
-            <input type="tel" id="tel" th:field="*{price}"/>
-
-            <button type="submit">Submit</button>
+            <input type="tel" id="tel" class="form-control" th:field="*{mobile}"/>
+            </div>
+            <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="datetime-local" class="form-control" id="date" th:field="*{dateTime}"/>
+            </div>
+            <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" class="form-control" id="amount" th:field="*{amount}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
 
     </div>
-    <div class="row">
+    <div class="row" style="background-color: black;">
         <div class="scrollable col-sm-6">
             <h3>Selected_Products</h3>
             <table class="table table-striped table-hover table-responsive-md table-light ">
@@ -89,6 +107,12 @@
                     <td th:text="${entity.totalPrice}"></td>
                 </tr>
                 </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4">Total Amount: </td>
+                    <td th:text="${Sum}"></td>
+                </tr>
+                </tfoot>
             </table>
         </div>
      </div>

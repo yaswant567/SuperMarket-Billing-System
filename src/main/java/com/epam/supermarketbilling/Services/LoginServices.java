@@ -13,5 +13,6 @@ public interface LoginServices {
     public void addData(Login data);
     public List<Login> getAllData();
     public void deleteById(Long id);
+    public Login getUserById(Long id);
 
 }

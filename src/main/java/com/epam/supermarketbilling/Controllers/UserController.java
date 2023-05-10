@@ -65,13 +65,24 @@ public class UserController
         return "redirect:/User/addItem";
     }
 
+    // ----------------------------------------Generate Bill-----------------------------------------------------------//
+
     @GetMapping("/User/addItem/generateBill")
-    public String generateBill()
+    public String generateBill(Model model)
     {
         userServices.getAllItems();
+        model.addAttribute("items",new Customer());
+        model.addAttribute("view",userServices.getAllItems());
+        model.addAttribute("Sum", userServices.getSumOfColumn());
+
         return "GeneratedBill";
     }
 
+    @PostMapping("/User/addItem/generateBill")
+    public String takeInput(@ModelAttribute("items") Customer items,Model model) {
+        customerServices.addCustomer(items);
+        return "redirect:/Admin/addItems";
+    }
 
     // ------------------------------------------------Customer  Table---------------------------------------------- //
 

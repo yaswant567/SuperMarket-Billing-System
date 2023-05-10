@@ -2,6 +2,9 @@ package com.epam.supermarketbilling.Model;
 
 import jakarta.persistence.*;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 @Entity
 @Table(name = "Customer")
 public class Customer {
@@ -17,7 +20,7 @@ public class Customer {
     @Column(name = "Mobile", length = 10, nullable = false)
     private String mobile;
     @Column(name = "Date_Time", length = 10, nullable = false)
-    private String dateTime;
+    private Date dateTime;
     @Column(name = "Amount", nullable = false)
     private int amount;
 
@@ -53,11 +56,11 @@ public class Customer {
         this.mobile = mobile;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 
