@@ -86,11 +86,7 @@ public class UserController
 
     // ------------------------------------------------Customer  Table---------------------------------------------- //
 
-    @GetMapping("")
-    public String addCustomer(Customer data)
-    {
-        return "GeneratedBill";
-    }
+
 
 //    public static class MyCondition {
 //        public boolean checkCondition(Long id) {

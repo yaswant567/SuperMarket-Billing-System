@@ -27,12 +27,20 @@
           border-radius: 10px;
           background-color: white;
           height: none;
-          width: 50%;
-          display: flex;
+          padding: 5px;
+          width: 80%;
           text-align: center;
         }
         .row{
            margin: 10px;
+        }
+<!--        .subContainer{-->
+<!--           display: flex;-->
+<!--        }-->
+        form{
+           display: flex;
+           align-self: auto;
+           margin: 3px;
         }
     </style>
 </head>
@@ -57,10 +65,13 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row">
+    <h1>SUPER MARKET</h1>
+    <h3>*********************Shopping Bill**********************</h3>
+    <div class="subContainer">
+    <div class="row" style="display: flex;">
 
-        <form method="post" class="form-label" action="/Admin/addItems" th:object="${items}">
-            <div class="form-group">
+        <form method="post" class="form-label" action="/Admin/addItems/generateBill" th:object="${items}">
+            <div class="form-group ">
             <label for="name">Customer_Name:</label>
             <input type="text" class="form-control" id="name" th:field="*{name}"/>
             </div>
@@ -80,6 +91,7 @@
             <label for="amount">Amount:</label>
             <input type="number" class="form-control" id="amount" th:field="*{amount}"/>
             </div>
+            <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
@@ -116,6 +128,8 @@
             </table>
         </div>
      </div>
+    </div>
+    <button onclick="window.print()">Print Bill</button>
 </div>
 
 </body>
