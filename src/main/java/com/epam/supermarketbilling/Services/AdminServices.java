@@ -16,4 +16,5 @@ public interface AdminServices {
 
     public void deleteItem(Long id);
     public void deleteAllItem();
+    public void updateUser(Products item);
 }

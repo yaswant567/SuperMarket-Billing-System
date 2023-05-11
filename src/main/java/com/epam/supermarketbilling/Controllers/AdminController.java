@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminController {
@@ -36,16 +37,15 @@ public class AdminController {
         return "redirect:/Admin/addItems";
     }
 
-    //    @GetMapping("/{id}")
-//    public Products getItemById(@PathVariable("id") Long id) {
-//        return adminService.getItemById(id);
-//    }
+    @GetMapping("/Admin/addItems/edit/{id}")
+    public ModelAndView editData(@PathVariable Long id)
+    {
+        Products item = adminService.getItemById(id);
+        ModelAndView modelAndView = new ModelAndView("Admin_addItems");
+        modelAndView.addObject("items", item);
+        return modelAndView;
+    }
 
-//    @PutMapping("/")
-//    public void updateEntity(@RequestBody MyEntity entity) {
-//        entityService.updateEntity(entity);
-//    }
-//
       @GetMapping("/Admin/addItems/delete/{id}")
       public String deleteData(@PathVariable("id") Long id) {
              adminService.deleteItem(id);

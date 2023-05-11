@@ -46,4 +46,8 @@ public class AdminServicesImpl implements AdminServices {
     public void deleteAllItem() {
         adminRepo.deleteAll();
     }
+
+    public void updateUser(Products item) {
+        adminRepo.save(item);
+    }
 }

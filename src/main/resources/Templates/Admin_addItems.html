@@ -138,7 +138,7 @@
                   <td th:text="${entity.price}"></td>
                   <td th:text="${entity.stock}">/td>
                   <td>
-                      <a th:href="@{/edit/{id}(id=${entity.id})}" class="btn btn-primary">Edit</a>
+                      <a th:href="@{/Admin/addItems/edit/{id}(id=${entity.id})}" class="btn btn-primary">Edit</a>
                       <a th:href="@{/Admin/addItems/delete/{id}(id=${entity.id})}" class="btn btn-danger">Delete</a>
                   </td>
               </tr>

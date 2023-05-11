@@ -15,5 +15,6 @@ public interface LoginServices {
     public void deleteById(Long id);
     public Login getUserById(Long id);
     public void deleteAllEmp();
+//    public void updateUser(Login item);
 
 }

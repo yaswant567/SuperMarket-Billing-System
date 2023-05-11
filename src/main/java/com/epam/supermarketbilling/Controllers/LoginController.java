@@ -25,7 +25,7 @@ public class LoginController {
     @PostMapping("/Login")
     public String login(@RequestParam Long id, @RequestParam String password, @RequestParam String role, HttpSession session) {
          Login user = loginServices.getUserById(id);
-         boolean flag = false;
+         boolean flag = true;
         if (user != null && id.equals(user.getId()) && password.equals(user.getPassword()) && role.equals("Admin")) {
 //            session.setAttribute("id", id);
             flag = true;
