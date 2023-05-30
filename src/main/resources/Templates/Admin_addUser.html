@@ -161,7 +161,6 @@
           <td th:text="${entity.salary}"></td>
         <td th:text="${entity.role}"></td>
         <td>
-          <a th:href="@{/Admin/addUser/edit/{id}(id=${entity.id})}" class="btn btn-primary">Edit</a>
           <a th:href="@{/Admin/addUser/delete/{id}(id=${entity.id})}" class="btn btn-danger">Delete</a>
         </td>
       </tr>

@@ -66,28 +66,24 @@
         .row{
           margin: 4px;
           }
+          h1{
+             color: White;
+             margin-left: 30px;
+          }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg ">
     <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" aria-current="page" href="http://localhost:9090/Admin/addItems">ManageItems</a>
-                <!--                   <a href="http://localhost:9090/Admin/addItems">Manage Products</a>-->
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:9090/Admin/addUser">EmpDetails</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:9090/Admin/addCust">CustDetails</a>
-            </li>
+
         </ul>
     </div>
-    <div>
 </nav>
-   <div>
-       <div class="card-body">
+<h1 style="margin-left: 30px;"> SuperMarket Billing System</h1>
+   <div class="container">
+       <div class="row">
+           <div class="col-md-6 ">
                <form action="/Login" class="form-label" method="post">
                    <div class="form-group form-group-sm">
                        <label for="id">Emp_ID:</label>
@@ -101,15 +97,15 @@
                    <div class="form-group form-group-sm">
                        <label for="role">Role:</label>
                        <select name="role" class="form-control" id="role">
-                           <option value="employee">Employee</option>
                            <option value="admin">Admin</option>
+                           <option value="employee">Employee</option>
 
                        </select>
                    </div>
                    <button type="submit" class="btn btn-primary">Admin</button>
                </form>
-           <a href="http://localhost:9090/User/addItem" class="btn btn-danger">Cashier</a>
-           <a href="http://localhost:9090/Admin/addItems" class="btn btn-primary">Admin</a>
+             <a href="http://localhost:9090/User/addItem" class="btn btn-danger">Cashier</a>
+           </div>
        </div>
    </div>
 </body>
