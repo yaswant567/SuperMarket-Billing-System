@@ -16,13 +16,13 @@ public class LoginController {
 
 //-------------------------------------------Login Page Handling----------------------------------------------------------------------//
 
-        @GetMapping("/Login")
+        @GetMapping("/")
         public String loginPage()
         {
             return "Login";
         }
 
-    @PostMapping("/Login")
+    @PostMapping("/")
     public String login(@RequestParam Long id, @RequestParam String password, @RequestParam String role, HttpSession session) {
          Login user = loginServices.getUserById(id);
          boolean flag = true;
